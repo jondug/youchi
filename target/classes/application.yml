@@ -1,0 +1,32 @@
+server:
+  #服务器运行端口
+  port: 8888
+
+spring:
+  datasource:
+    #数据库链接url
+    url: jdbc:mysql://127.0.0.1:3306/takeaway_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    #数据库账号密码
+    username: root
+    password: 123456
+    #数据库驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  devtools:
+    restart:
+      poll-interval: 2s
+      quiet-period: 1999ms
+  servlet:
+    #传输文件大小
+    multipart:
+      max-file-size: 2000MB
+      max-request-size: 2000MB
+
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: file:D:\file\
+mybatis:
+  #mapper文件
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

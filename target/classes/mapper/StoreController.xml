@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youchi.mapper.StoreMapper">
+    <select id="page" resultType="map">
+        SELECT s.id,s.name ,s.address,c.name AS store_classify_name,s.photo,
+        c.id AS storeClassifyId, s.merchant_id,s.registration_time,s.intro
+        FROM `store` AS s JOIN store_classify  AS c
+        ON s.store_classify_id=c.id
+        WHERE s.merchant_id=#{merchantId}
+        <if test="keyword != '%null%'">
+            and s.name LIKE #{keyword}
+        </if>
+        order by s.id limit #{size},#{num};
+    </select>
+</mapper>
